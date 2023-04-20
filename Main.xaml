@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>945.6,1316</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>768,1316</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -456,7 +456,7 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <Transition.Condition>[SystemException IsNot Nothing]</Transition.Condition>
                     <Transition.To>
-                      <State x:Name="__ReferenceID6" sap2010:Annotation.AnnotationText="Read configuration file and initialize applications used in the process." DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="253.6,105.6" sap2010:WorkflowViewState.IdRef="State_10">
+                      <State x:Name="__ReferenceID6" sap2010:Annotation.AnnotationText="Read configuration file and initialize applications used in the process." DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="688,3431.2" sap2010:WorkflowViewState.IdRef="State_10">
                         <State.Entry>
                           <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="643.2,3011.2" sap2010:WorkflowViewState.IdRef="TryCatch_13">
                             <sap:WorkflowViewStateService.ViewState>
@@ -606,6 +606,9 @@
                                     <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_DelayActivity">
                                       <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="TimeSpan.Parse(Config(&quot;DelayActivity&quot;).ToString)" />
                                     </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="In_AccountName">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;AccountName&quot;).ToString" />
+                                    </InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                               </Sequence>
@@ -741,7 +744,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <Transition.To>
-                              <State x:Name="__ReferenceID7" sap2010:Annotation.AnnotationText="But Sentences in Queue" DisplayName="Set Data in Queue" sap:VirtualizedContainerService.HintSize="678.4,1056.8" sap2010:WorkflowViewState.IdRef="State_9">
+                              <State x:Name="__ReferenceID7" sap2010:Annotation.AnnotationText="But Sentences in Queue" DisplayName="Set Data in Queue" sap:VirtualizedContainerService.HintSize="245.6,110.4" sap2010:WorkflowViewState.IdRef="State_9">
                                 <State.Entry>
                                   <Flowchart sap:VirtualizedContainerService.HintSize="633.6,636.8" sap2010:WorkflowViewState.IdRef="Flowchart_2">
                                     <Flowchart.Variables>
@@ -769,18 +772,10 @@
                                       </sap:WorkflowViewStateService.ViewState>
                                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="General_GetDataTable.xaml" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" UnSafe="False" WorkflowFileName="General Workflows\General_GetDataTable.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">
-                                            <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Retry" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">
-                                            <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="RetryInterval" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="In_SentencesFilePath">
-                                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="SentencesFilePath" />
-                                          </InArgument>
-                                          <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_SentencesDT">
-                                            <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="SentencesDT" />
-                                          </OutArgument>
+                                          <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">[Retry]</InArgument>
+                                          <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">[RetryInterval]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="In_SentencesFilePath">[SentencesFilePath]</InArgument>
+                                          <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_SentencesDT">[SentencesDT]</OutArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -797,17 +792,11 @@
                                               <av:PointCollection x:Key="ConnectorLocation">250,306.32 250,363.52</av:PointCollection>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="General_SetDataInQueue.xaml" sap:VirtualizedContainerService.HintSize="378.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="General Workflows\General_SetDataInQueue.xaml">
+                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="General_SetDataInQueue.xaml" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="General Workflows\General_SetDataInQueue.xaml">
                                             <ui:InvokeWorkflowFile.Arguments>
-                                              <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">
-                                                <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Retry" />
-                                              </InArgument>
-                                              <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">
-                                                <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="RetryInterval" />
-                                              </InArgument>
-                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="In_SentencesDT">
-                                                <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="SentencesDT" />
-                                              </InArgument>
+                                              <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">[Retry]</InArgument>
+                                              <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">[RetryInterval]</InArgument>
+                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="In_SentencesDT">[SentencesDT]</InArgument>
                                             </ui:InvokeWorkflowFile.Arguments>
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
