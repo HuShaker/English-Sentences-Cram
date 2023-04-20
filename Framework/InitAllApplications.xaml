@@ -2,7 +2,7 @@
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="In_Retry" Type="InArgument(x:Int32)" />
-    <x:Property Name="Out_OpenBrowser" Type="InArgument(ui:Browser)" />
+    <x:Property Name="Out_OpenBrowser" Type="OutArgument(ui:Browser)" />
     <x:Property Name="In_RetryInterval" Type="InArgument(x:TimeSpan)" />
     <x:Property Name="In_DelayS" Type="InArgument(x:Int32)" />
     <x:Property Name="In_Browse" Type="InArgument(x:String)" />
@@ -13,7 +13,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>740,1152</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>708.8,1016</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -164,15 +164,9 @@
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="General_CheckAccount.xaml" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="General Workflows\General_CheckAccount.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <OutArgument x:TypeArguments="x:String" x:Key="Out_AccountName">
-                      <VisualBasicReference x:TypeArguments="x:String" ExpressionText="AccountName" />
-                    </OutArgument>
-                    <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">
-                      <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="In_Retry" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">
-                      <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="In_RetryInterval" />
-                    </InArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="Out_AccountName">[AccountName]</OutArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">[In_Retry]</InArgument>
+                    <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">[In_RetryInterval]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -181,15 +175,12 @@
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:InvokeWorkflowFile>
                 <FlowStep.Next>
-                  <FlowDecision x:Name="__ReferenceID2" DisplayName="Check Account" sap:VirtualizedContainerService.HintSize="84,87.2" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
-                    <FlowDecision.Condition>
-                      <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="In_AccountName.Trim.ToLower = AccountName.Trim.ToLower" />
-                    </FlowDecision.Condition>
+                  <FlowDecision x:Name="__ReferenceID2" Condition="[In_AccountName.Trim.ToLower = AccountName.Trim.ToLower]" DisplayName="Check Account" sap:VirtualizedContainerService.HintSize="83.2,87.2" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <av:Point x:Key="ShapeLocation">260.64166666666665,386.5</av:Point>
-                        <av:Size x:Key="ShapeSize">84,87.2</av:Size>
+                        <av:Size x:Key="ShapeSize">83.2,87.2</av:Size>
                         <av:PointCollection x:Key="TrueConnector">260.64166666666665,430.1 150,430.1 150,493.6</av:PointCollection>
                         <av:PointCollection x:Key="FalseConnector">344.64166666666665,430.1 440,430.1 440,499.52</av:PointCollection>
                       </scg:Dictionary>
