@@ -194,8 +194,8 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:LogMessage DisplayName="Log message  (Get transaction data error)" sap:VirtualizedContainerService.HintSize="387.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_44" Level="Fatal" Message="[Config(&quot;LogMessage_GetTransactionDataError&quot;).ToString+TransactionNumber.ToString+&quot;. &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source]" />
-                          <Assign DisplayName="End Process (Could not get new transaction)" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                          <ui:LogMessage DisplayName="Log message  (Get transaction data error)" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_44" Level="Fatal" Message="[Config(&quot;LogMessage_GetTransactionDataError&quot;).ToString+TransactionNumber.ToString+&quot;. &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source]" />
+                          <Assign DisplayName="End Process (Could not get new transaction)" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_34">
                             <Assign.To>
                               <OutArgument x:TypeArguments="ui:QueueItem">[TransactionItem]</OutArgument>
                             </Assign.To>
@@ -233,7 +233,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Transition.To>
-              <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="580.8,1462.4" sap2010:WorkflowViewState.IdRef="State_7">
+              <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="230.4,194.4" sap2010:WorkflowViewState.IdRef="State_7">
                 <State.Entry>
                   <TryCatch DisplayName="Try to process transaction" sap:VirtualizedContainerService.HintSize="536,986.4" sap2010:WorkflowViewState.IdRef="TryCatch_19">
                     <sap:WorkflowViewStateService.ViewState>
@@ -259,24 +259,15 @@
                         </Assign>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Process workflow" sap:VirtualizedContainerService.HintSize="436.8,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_38" UnSafe="False" WorkflowFileName="Framework\Process.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
-                              <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="TransactionItem" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="ui:Browser" x:Key="In_OpenBrowser">
-                              <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="OpenBrowser" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="In_URLEdit">
-                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URLEdit&quot;).ToString" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">
-                              <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(Config(&quot;Retry&quot;))" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">
-                              <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="TimeSpan.Parse(Config(&quot;RetryInterval&quot;).ToString)" />
-                            </InArgument>
+                            <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[TransactionItem]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+                            <InArgument x:TypeArguments="ui:Browser" x:Key="In_OpenBrowser">[OpenBrowser]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="In_URLEdit">[Config("URLEdit").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">[CInt(Config("Retry"))]</InArgument>
+                            <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">[TimeSpan.Parse(Config("RetryInterval").ToString)]</InArgument>
+                            <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_DelayActivity">[TimeSpan.Parse(Config("DelayActivity").ToString)]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="In_DashboardURL">[Config("DashboardURL").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="In_SentencesFilePath">[Config("SentencesFilePath").ToString]</InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
                         <TryCatch DisplayName="Try Catch Set Transaction Status (Success)" sap:VirtualizedContainerService.HintSize="436.8,344.8" sap2010:WorkflowViewState.IdRef="TryCatch_16">
@@ -396,7 +387,7 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Handle System Exception" sap:VirtualizedContainerService.HintSize="500.8,575.2" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                          <Sequence DisplayName="Handle System Exception" sap:VirtualizedContainerService.HintSize="500.8,576.8" sap2010:WorkflowViewState.IdRef="Sequence_39">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -410,9 +401,9 @@
                                 <InArgument x:TypeArguments="s:Exception">[Exception]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <TryCatch DisplayName="Try Catch SetTransactionStatus (SE)" sap:VirtualizedContainerService.HintSize="438.4,341.6" sap2010:WorkflowViewState.IdRef="TryCatch_18">
+                            <TryCatch DisplayName="Try Catch SetTransactionStatus (SE)" sap:VirtualizedContainerService.HintSize="438.4,343.2" sap2010:WorkflowViewState.IdRef="TryCatch_18">
                               <TryCatch.Try>
-                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetTransactionStatus (SE)" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_41" UnSafe="False" WorkflowFileName="Framework\SetTransactionStatus.xaml">
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetTransactionStatus (SE)" sap:VirtualizedContainerService.HintSize="366.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_41" UnSafe="False" WorkflowFileName="Framework\SetTransactionStatus.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
                                     <InArgument x:TypeArguments="ui:BusinessRuleException" x:Key="in_BusinessException">[Nothing]</InArgument>
                                     <InArgument x:TypeArguments="x:String" x:Key="in_TransactionField1">[TransactionField1]</InArgument>
@@ -464,7 +455,7 @@
                   <Transition DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="448.8,510.4" sap2010:WorkflowViewState.IdRef="Transition_11">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <av:PointCollection x:Key="ConnectorLocation">273.92,857.1999999999999 273.92,887.1999999999999 176.59999999999997,887.1999999999999 176.59999999999997,142.26666666666665 506.59999999999997,142.26666666666665 506.59999999999997,64.74666666666666 476.6,64.74666666666666</av:PointCollection>
+                        <av:PointCollection x:Key="ConnectorLocation">273.92,857.1999999999999 273.92,887.1999999999999 161.6,887.1999999999999 161.6,179.23999999999998 506.59999999999997,179.23999999999998 506.59999999999997,64.74666666666666 476.6,64.74666666666666</av:PointCollection>
                         <x:Int32 x:Key="SrcConnectionPointIndex">23</x:Int32>
                         <x:Int32 x:Key="DestConnectionPointIndex">40</x:Int32>
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -598,33 +589,15 @@
                                 </If>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke InitiAllApplications workflow" sap:VirtualizedContainerService.HintSize="544,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_33" UnSafe="False" WorkflowFileName="Framework\InitAllApplications.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                                      <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">
-                                      <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(Config(&quot;Retry&quot;))" />
-                                    </InArgument>
-                                    <OutArgument x:TypeArguments="ui:Browser" x:Key="Out_OpenBrowser">
-                                      <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="OpenBrowser" />
-                                    </OutArgument>
-                                    <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">
-                                      <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="TimeSpan.Parse(Config(&quot;RetryInterval&quot;).ToString)" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:Int32" x:Key="In_DelayS">
-                                      <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(Config(&quot;DelayS&quot;))" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="In_Browse">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Browse&quot;).ToString" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="In_URLSite">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URLSite&quot;).ToString" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_DelayActivity">
-                                      <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="TimeSpan.Parse(Config(&quot;DelayActivity&quot;).ToString)" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="In_AccountName">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;AccountName&quot;).ToString" />
-                                    </InArgument>
+                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">[CInt(Config("Retry"))]</InArgument>
+                                    <OutArgument x:TypeArguments="ui:Browser" x:Key="Out_OpenBrowser">[OpenBrowser]</OutArgument>
+                                    <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">[TimeSpan.Parse(Config("RetryInterval").ToString)]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="In_DelayS">[CInt(Config("DelayS"))]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="In_Browse">[Config("Browse").ToString]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="In_URLSite">[Config("URLSite").ToString]</InArgument>
+                                    <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_DelayActivity">[TimeSpan.Parse(Config("DelayActivity").ToString)]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="In_AccountName">[Config("AccountName").ToString]</InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                               </Sequence>
@@ -807,7 +780,7 @@
                                               <av:Size x:Key="ShapeSize">200,52.8</av:Size>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="General_SetDataInQueue.xaml" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="General Workflows\General_SetDataInQueue.xaml">
+                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="General_SetDataInQueue.xaml" sap:VirtualizedContainerService.HintSize="378.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="General Workflows\General_SetDataInQueue.xaml">
                                             <ui:InvokeWorkflowFile.Arguments>
                                               <InArgument x:TypeArguments="x:Int32" x:Key="In_Retry">[Retry]</InArgument>
                                               <InArgument x:TypeArguments="x:TimeSpan" x:Key="In_RetryInterval">[RetryInterval]</InArgument>
